@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44814052-ab49-4c3e-9ecc-19d344f8cb8e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/deviceupnp/DeviceUPNP.java" afterPath="$PROJECT_DIR$/src/deviceupnp/DeviceUPNP.java" />
-      <change beforePath="$PROJECT_DIR$/src/deviceupnp/PhoneClient.java" afterPath="$PROJECT_DIR$/src/deviceupnp/LightClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/deviceupnp/PhoneServer.java" afterPath="$PROJECT_DIR$/src/deviceupnp/LightServer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/src/deviceupnp/DeviceUPNP.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-360">
-              <caret line="122" column="4" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
+              <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
               <folding>
                 <element signature="e#0#7265#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -310,12 +305,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513587502357</updated>
-      <workItem from="1513587503786" duration="2396000" />
+      <workItem from="1513587503786" duration="2467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2396000" />
+    <option name="totallyTimeSpent" value="2467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -371,7 +366,7 @@
     <entry file="file://$PROJECT_DIR$/src/deviceupnp/DeviceUPNP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-360">
-          <caret line="122" column="4" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
+          <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
           <folding>
             <element signature="e#0#7265#0" expanded="true" />
             <element signature="imports" expanded="true" />
