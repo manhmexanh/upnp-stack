@@ -58,7 +58,7 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
         setLayout(null); setSize(400, 380); setTitle(friendlyName);
         setResizable(false); setResizable(false);
         label = new JLabel(); label.setBounds(0, 0, 400, 300);
-        but = new JButton("CALL / END CALL"); but.setBounds(50, 300, 300, 50);
+        but = new JButton("BAT DEN / TAT DEN"); but.setBounds(50, 300, 300, 50);
         AutoResizeIcon.setIcon(label, "img/noringing.jpg");
         add(label); add(but); but.addActionListener(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -74,11 +74,11 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
     protected LocalService<SwitchStatus> getSwitchStatusService()
     {
         if(upnpService == null) return null;
-        LocalDevice phoneDevice;
-        if((phoneDevice = upnpService.getRegistry().getLocalDevice(udn, true))==null)
+        LocalDevice lightDevice;
+        if((lightDevice = upnpService.getRegistry().getLocalDevice(udn, true))==null)
             return null;
         return (LocalService<SwitchStatus>)
-                phoneDevice.findService(new UDAServiceType("SwitchStatus", 1));
+                lightDevice.findService(new UDAServiceType("SwitchStatus", 1));
     }
     
     public void onServiceConnection()
@@ -89,10 +89,10 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
         if (switchStatusService == null) 
         {
             try {
-                    LocalDevice phoneDevice = createDevice();
+                    LocalDevice lightDevice = createDevice();
 
                     System.out.println("Created device");
-                    upnpService.getRegistry().addDevice(phoneDevice);
+                    upnpService.getRegistry().addDevice(lightDevice);
 
                     switchStatusService = getSwitchStatusService();
 
@@ -108,11 +108,11 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
     
     protected LocalDevice createDevice() throws org.fourthline.cling.model.ValidationException
     {
-        DeviceType type = new UDADeviceType("VirtualPhone", 1);
+        DeviceType type = new UDADeviceType("DimmableLight", 1);
         
         DeviceDetails details = new DeviceDetails(friendlyName, 
                 new ManufacturerDetails(manufacturerDetails), 
-                new ModelDetails("VirtualPhone", "A phone with 2 state ringing and not ringing", "v1"));
+                new ModelDetails("DimmableLight", "Software Emulated Light Bulb, Visual Basic version", "XPC-L1"));
         
         LocalService service = new AnnotationLocalServiceBinder().read(SwitchStatus.class);
         service.setManager(new DefaultServiceManager<>(service, SwitchStatus.class));
@@ -121,8 +121,8 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
         return device;
     }
     
-    final String friendlyName = "Phuc Phone";
-    final String manufacturerDetails = "Phuc dep zai";
+    final String friendlyName = "Network Light (ADMIN-PC)";
+    final String manufacturerDetails = "OpenSource";
     
     private void onCreate()
     {

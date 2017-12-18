@@ -23,10 +23,10 @@ import org.fourthline.cling.registry.RegistryListener;
  *
  * @author Admins
  */
-public class PhoneClient implements Runnable{
+public class LightClient implements Runnable{
     public static void main(String[] args) throws Exception {
         // Start a user thread that runs the UPnP stack
-        Thread clientThread = new Thread(new PhoneClient());
+        Thread clientThread = new Thread(new LightClient());
         clientThread.setDaemon(false);
         clientThread.start();
 

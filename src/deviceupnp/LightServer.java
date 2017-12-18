@@ -25,10 +25,10 @@ import org.fourthline.cling.model.types.UDN;
  *
  * @author Admins
  */
-public class PhoneServer implements Runnable{
+public class LightServer implements Runnable{
     public static void main(String[] args) throws Exception {
         // Start a user thread that runs the UPnP stack
-        Thread serverThread = new Thread(new PhoneServer());
+        Thread serverThread = new Thread(new LightServer());
         serverThread.setDaemon(false);
         serverThread.start();
     }
@@ -61,11 +61,10 @@ public class PhoneServer implements Runnable{
     
     protected LocalDevice createDevice() throws org.fourthline.cling.model.ValidationException
     {
-        DeviceType type = new UDADeviceType("VirtualPhone", 1);
-        
+        DeviceType type = new UDADeviceType("DimmableLight", 1);
         DeviceDetails details = new DeviceDetails(friendlyName, 
                 new ManufacturerDetails(manufacturerDetails), 
-                new ModelDetails("VirtualPhone", "A phone with 2 state ringing and not ringing", "v1"));
+                new ModelDetails("Network Light Bulb", "Software Emulated Light Bulb, Visual Basic version", "XPC-L1"));
         
         LocalService service = new AnnotationLocalServiceBinder().read(SwitchStatus.class);
         service.setManager(new DefaultServiceManager<>(service, SwitchStatus.class));
@@ -74,8 +73,8 @@ public class PhoneServer implements Runnable{
         return device;
     }
     
-    final String friendlyName = "Phuc Phone";
-    final String manufacturerDetails = "Phuc dz";
+    final String friendlyName = "Network Light (ADMIN-PC)";
+    final String manufacturerDetails = "OpenSource";
     
     protected Icon createDefaultDeviceIcon() {
         return new Icon(

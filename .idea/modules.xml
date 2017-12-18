@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VvirtualDeviceUpnp.iml" filepath="$PROJECT_DIR$/VvirtualDeviceUpnp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upnp-stack.iml" filepath="$PROJECT_DIR$/upnp-stack.iml" />
     </modules>
   </component>
 </project>
