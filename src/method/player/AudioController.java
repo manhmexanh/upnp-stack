@@ -9,13 +9,13 @@ import org.fourthline.cling.controlpoint.ActionCallback;
 import org.fourthline.cling.model.action.ActionInvocation;
 import org.fourthline.cling.model.meta.Device;
 import org.fourthline.cling.model.types.UDAServiceId;
-import upnp.device.CDPlayer;
+import upnp.device.TV;
 
 /**
  *
  * @author Admins
  */
-public class AudioController extends CDPlayer implements Services.AudioService, Services{
+public class AudioController extends TV implements Services.AudioService, Services{
     
     org.fourthline.cling.model.meta.Service service;
     

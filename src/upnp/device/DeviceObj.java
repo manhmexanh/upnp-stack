@@ -35,29 +35,26 @@ public abstract class DeviceObj {
     
     public void remoteDevice(boolean b)
     {
-        if(this instanceof CDPlayer)
+        if(this instanceof TV)
         {
-            CDPlayer cdplayer = (CDPlayer) this;
-            this.doService = cdplayer;
+            TV tv = (TV) this;
+            this.doService = tv;
             doService.DoService(b);
         }
     }
-    
-    public static boolean isCDPlayer(Device device)
-    {
-        return device.getDetails().getFriendlyName().compareTo("CDPlayer") == 0;
-    }
+
     public static boolean isBulb(Device device)
     {
         return device.getDetails().getFriendlyName().compareTo("Network Light (ADMIN-PC)") == 0;
     }
-    public static boolean isTV(Device device)
+
+    public static boolean isTv(Device device)
     {
         return device.getDetails().getFriendlyName().compareTo("UPnP Television Emulator") == 0;
     }
 
     public static boolean isPhone(Device device)
     {
-        return device.getDetails().getFriendlyName().compareTo("Phuc Phone") == 0;
+        return device.getDetails().getFriendlyName().compareTo("My phone") == 0;
     }
 }

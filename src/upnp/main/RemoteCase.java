@@ -113,11 +113,11 @@ public class RemoteCase extends javax.swing.JFrame {
         if(radio2.isSelected())
             // light off -> tv off
 
-            deviceOR = controller.createLightService(deviceK);
+            deviceOR = controller.createPowerService(deviceK);
             // deviceR: tv
         else
             // light on -> tv on
-            deviceOR = controller.createLightService(deviceK);
+            deviceOR = controller.createPowerService(deviceK);
         
         controller.add(deviceR, deviceOR);
         this.dispose();
