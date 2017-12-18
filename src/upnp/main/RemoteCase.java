@@ -51,9 +51,9 @@ public class RemoteCase extends javax.swing.JFrame {
         jLabel1.setText("Lựa chọn tình huống");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel3.setText("Tăt âm thanh khi có điện thoại");
+        jLabel3.setText("Đèn bật thì tivi bật");
 
-        jLabel5.setText("Tạm dừng khi có điện thoại gọi đến");
+        jLabel5.setText("Đèn tắt thì tivi tắt");
 
         radio1.setText("Tình huống 1:");
 
@@ -111,10 +111,15 @@ public class RemoteCase extends javax.swing.JFrame {
     private void remoteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remoteBtnActionPerformed
         DeviceObj deviceOR;
         if(radio2.isSelected())
-            deviceOR = controller.createPlayService(deviceR);
-        else deviceOR = controller.createAudioService(deviceR);
+            // light off -> tv off
+
+            deviceOR = controller.createLightService(deviceK);
+            // deviceR: tv
+        else
+            // light on -> tv on
+            deviceOR = controller.createLightService(deviceK);
         
-        controller.add(deviceK, deviceOR);
+        controller.add(deviceR, deviceOR);
         this.dispose();
     }//GEN-LAST:event_remoteBtnActionPerformed
 

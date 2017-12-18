@@ -97,6 +97,14 @@ public class DeviceBrowser extends JFrame implements ListSelectionListener, Acti
             {
                 listmodel2.addElement(device); repaint();
             }
+            if(DeviceObj.isBulb(device))
+            {
+                listmodel.addElement(device); repaint();
+            }
+            if(DeviceObj.isTV(device))
+            {
+                listmodel2.addElement(device); repaint();
+            }
         }
 
         public void remoteDeviceUpdated(Registry registry, RemoteDevice device) {}//"Remote device updated: " + device.getDisplayString()

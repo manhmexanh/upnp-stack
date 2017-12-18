@@ -21,6 +21,10 @@ public interface Services {
         public void stop();
         public String getMode();
     }
+
+    public interface LightService {
+        public boolean getStatus();
+    }
     
     public void remote(boolean b);
 }

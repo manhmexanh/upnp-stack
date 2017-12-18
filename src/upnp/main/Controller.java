@@ -8,6 +8,7 @@ package upnp.main;
 import java.util.HashMap;
 import method.player.AudioController;
 import method.player.PlayController;
+import method.player.LightController;
 import org.fourthline.cling.UpnpService;
 import org.fourthline.cling.model.meta.Device;
 import upnp.device.DeviceObj;
@@ -57,6 +58,12 @@ public class Controller {
     public DeviceObj createAudioService(Device deviceR)
     {
         DeviceObj device = new AudioController(deviceR, upnpService);
+        return device;
+    }
+
+    public DeviceObj createLightService(Device deviceR)
+    {
+        DeviceObj device = new LightController(deviceR, upnpService);
         return device;
     }
 }

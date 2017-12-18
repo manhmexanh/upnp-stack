@@ -47,7 +47,15 @@ public abstract class DeviceObj {
     {
         return device.getDetails().getFriendlyName().compareTo("CDPlayer") == 0;
     }
-    
+    public static boolean isBulb(Device device)
+    {
+        return device.getDetails().getFriendlyName().compareTo("Network Light (ADMIN-PC)") == 0;
+    }
+    public static boolean isTV(Device device)
+    {
+        return device.getDetails().getFriendlyName().compareTo("UPnP Television Emulator") == 0;
+    }
+
     public static boolean isPhone(Device device)
     {
         return device.getDetails().getFriendlyName().compareTo("Phuc Phone") == 0;
