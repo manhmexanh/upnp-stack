@@ -7,7 +7,7 @@ package upnp.main;
 
 import java.util.HashMap;
 import method.player.AudioController;
-import method.player.PowerController;
+import method.player.PlayController;
 import org.fourthline.cling.UpnpService;
 import org.fourthline.cling.model.meta.Device;
 import upnp.device.DeviceObj;
@@ -48,15 +48,15 @@ public class Controller {
         mapDevice.remove(key);
     }
     
+    public DeviceObj createPlayService(Device deviceR)
+    {
+        DeviceObj device = new PlayController(deviceR, upnpService);
+        return device;
+    }
+    
     public DeviceObj createAudioService(Device deviceR)
     {
         DeviceObj device = new AudioController(deviceR, upnpService);
-        return device;
-    }
-
-    public DeviceObj createPowerService(Device deviceR)
-    {
-        DeviceObj device = new PowerController(deviceR, upnpService);
         return device;
     }
 }

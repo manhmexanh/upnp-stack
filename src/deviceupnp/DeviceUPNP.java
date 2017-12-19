@@ -46,20 +46,20 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
     private UDN udn = new UDN(UUID.randomUUID());
     private JButton but;
     private JLabel label;
-    
+
     public DeviceUPNP()
     {
         init();
         onCreate();
     }
-    
+
     private void init()
     {
         setLayout(null); setSize(400, 380); setTitle(friendlyName);
         setResizable(false); setResizable(false);
         label = new JLabel(); label.setBounds(0, 0, 400, 300);
-        but = new JButton("BAT DEN / TAT DEN"); but.setBounds(50, 300, 300, 50);
-        AutoResizeIcon.setIcon(label, "img/noringing.jpg");
+        but = new JButton("Door OPEN / CLOSE"); but.setBounds(50, 300, 300, 50);
+        AutoResizeIcon.setIcon(label, "img/door-close.png");
         add(label); add(but); but.addActionListener(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
@@ -70,72 +70,72 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
         });
     }
 
-    
+
     protected LocalService<SwitchStatus> getSwitchStatusService()
     {
         if(upnpService == null) return null;
-        LocalDevice lightDevice;
-        if((lightDevice = upnpService.getRegistry().getLocalDevice(udn, true))==null)
+        LocalDevice LightDevice;
+        if((LightDevice = upnpService.getRegistry().getLocalDevice(udn, true))==null)
             return null;
         return (LocalService<SwitchStatus>)
-                lightDevice.findService(new UDAServiceType("SwitchStatus", 1));
+                LightDevice.findService(new UDAServiceType("SwitchStatus", 1));
     }
-    
+
     public void onServiceConnection()
     {
         upnpService = new UpnpServiceImpl();
-        
+
         LocalService<SwitchStatus> switchStatusService = getSwitchStatusService();
-        if (switchStatusService == null) 
+        if (switchStatusService == null)
         {
             try {
-                    LocalDevice lightDevice = createDevice();
+                LocalDevice LightDevice = createDevice();
 
-                    System.out.println("Created device");
-                    upnpService.getRegistry().addDevice(lightDevice);
+                System.out.println("Created device");
+                upnpService.getRegistry().addDevice(LightDevice);
 
-                    switchStatusService = getSwitchStatusService();
+                switchStatusService = getSwitchStatusService();
 
-                } catch (Exception ex) {
-                    System.out.println("Creating device failed");
-                    return;
-                }
+            } catch (Exception ex) {
+                System.out.println("Creating device failed");
+                return;
+            }
         }
-        
+
         switchStatusService.getManager().getImplementation().getPropertyChangeSupport()
                 .addPropertyChangeListener(this);
     }
-    
+
     protected LocalDevice createDevice() throws org.fourthline.cling.model.ValidationException
     {
-        DeviceType type = new UDADeviceType("DimmableLight", 1);
-        
-        DeviceDetails details = new DeviceDetails(friendlyName, 
-                new ManufacturerDetails(manufacturerDetails), 
-                new ModelDetails("DimmableLight", "Software Emulated Light Bulb, Visual Basic version", "XPC-L1"));
-        
+        DeviceType type = new UDADeviceType("Door", 1);
+
+        DeviceDetails details = new DeviceDetails(friendlyName,
+                new ManufacturerDetails(manufacturerDetails),
+                new ModelDetails("Door", "Door 2 state", "v1"));
+
         LocalService service = new AnnotationLocalServiceBinder().read(SwitchStatus.class);
         service.setManager(new DefaultServiceManager<>(service, SwitchStatus.class));
-        
+
         LocalDevice device = new LocalDevice(new DeviceIdentity(udn), type, details, createDefaultDeviceIcon(), service);
         return device;
     }
-    
-    final String friendlyName = "Network Light (ADMIN-PC)";
-    final String manufacturerDetails = "OpenSource";
-    
+
+    final String friendlyName = "Door";
+    final String manufacturerDetails = "Nhom14";
+
     private void onCreate()
     {
         onServiceConnection();
     }
-    
+
     private void onDestroy()
     {
         LocalService<SwitchStatus> switchStatusService = getSwitchStatusService();
         LocalDevice device = upnpService.getRegistry().getLocalDevice(udn, true);
         if (switchStatusService != null)
             switchStatusService.getManager().getImplementation().getPropertyChangeSupport()
-                .removePropertyChangeListener(this);
+                    .removePropertyChangeListener(this);
         if(device != null)
             upnpService.getRegistry().removeDevice(device);
         upnpService.shutdown();
@@ -146,29 +146,29 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
         if (pce.getPropertyName().equals("status")) {
             System.out.println("Property Changed");
             boolean status = getStatus();
-            if(status) AutoResizeIcon.setIcon(label, "img/ringing.jpg");
-            else AutoResizeIcon.setIcon(label, "img/noringing.jpg");
+            if(status) AutoResizeIcon.setIcon(label, "img/door-open.png");
+            else AutoResizeIcon.setIcon(label, "img/door-close.png");
             repaint();
             System.out.println(!status+" -> "+status);
         }
     }
-    
+
     private void formWindowClosing(java.awt.event.WindowEvent evt)
     {
         System.out.println("Destroyed device");
         onDestroy();
     }
-    
+
     protected Icon createDefaultDeviceIcon() {
         try {
-            File file = new File("src/img/Webp.net-resizeimage.jpg");
+            File file = new File("src/img/door-close.png");
             return new Icon("image/jpg", 48, 48, 8, file);
         } catch (IOException ex) {
             Logger.getLogger(DeviceUPNP.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-    
+
     public static void main(String[] args) {
         new DeviceUPNP();
     }
@@ -182,7 +182,7 @@ public class DeviceUPNP extends JFrame implements PropertyChangeListener, Action
         invocation.setInput("NewTargetValue", status);
         new ActionCallback.Default(invocation, upnpService.getControlPoint()).run();
     }
-    
+
     public boolean getStatus()
     {
         Action action = getSwitchStatusService().getAction("GetStatus");

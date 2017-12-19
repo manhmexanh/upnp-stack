@@ -61,7 +61,7 @@ public class DeviceBrowser extends JFrame implements ListSelectionListener, Acti
 
         public void remoteDeviceAdded(Registry registry, RemoteDevice device) {
             System.out.println("Remote device available: " + device.getDisplayString());
-            if(DeviceObj.isBulb(device))
+            if(DeviceObj.isPhone(device))
             {
                 listmodel.addElement(device); repaint();
                 SubscriptionCallback subscriptionCallback = new SubscriptionCallback(device.findService(
@@ -93,7 +93,7 @@ public class DeviceBrowser extends JFrame implements ListSelectionListener, Acti
                 };
                 upnpService.getControlPoint().execute(subscriptionCallback);
             }
-            if(DeviceObj.isTv(device))
+            if(DeviceObj.isCDPlayer(device))
             {
                 listmodel2.addElement(device); repaint();
             }
