@@ -5,7 +5,6 @@
  */
 package upnp.device;
 
-import method.player.DoService;
 import org.fourthline.cling.UpnpService;
 import org.fourthline.cling.model.meta.Device;
 
@@ -17,8 +16,7 @@ import org.fourthline.cling.model.meta.Device;
 public abstract class DeviceObj {
     protected Device device;
     protected UpnpService upnpService;
-    protected DoService doService;
-    
+
     public DeviceObj(Device device, UpnpService upnpService)
     {
         this.device = device;
@@ -35,12 +33,6 @@ public abstract class DeviceObj {
     
     public void remoteDevice(boolean b)
     {
-        if(this instanceof CDPlayer)
-        {
-            CDPlayer cdplayer = (CDPlayer) this;
-            this.doService = cdplayer;
-            doService.DoService(b);
-        }
     }
     
     public static boolean isCDPlayer(Device device)
